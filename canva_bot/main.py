@@ -46,7 +46,7 @@ def create_video(df):
             time.sleep(0.5)
             effect()
             time.sleep(0.5)
-            pyautogui.moveTo(620, 205, duration=0.5)
+            pyautogui.moveTo(610, 205, duration=0.5)
             pyautogui.click()  # Colors
             time.sleep(0.5)
             pyautogui.moveTo(110, 415, duration=0.5)
@@ -69,7 +69,7 @@ def create_video(df):
             pyautogui.moveTo(350, 815, duration=0.5)
             pyautogui.click()  # Remove Effect Button
             time.sleep(0.5)
-            pyautogui.moveTo(620, 205, duration=0.5)
+            pyautogui.moveTo(610, 205, duration=0.5)
             pyautogui.click()  # Colors
             time.sleep(0.5)
             pyautogui.moveTo(165, 415, duration=0.5)
