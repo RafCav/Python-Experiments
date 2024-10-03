@@ -3,8 +3,8 @@ Welcome to the Python-Experiments repository! This repository contains a collect
 
 ## Contents
 Here are some examples of categories of scripts you might find:
-• Automation: Scripts to automate repetitive tasks.
-• Web Scraping: Tools for extracting data from websites.
-• Data Analysis: Codes using libraries like pandas, numpy, and matplotlib.
-• Algorithms and Data Structures: Implementation of classic algorithms and data structures.
-• Miscellaneous Scripts: Random codes and functionality tests.
+* Automation: Scripts to automate repetitive tasks.
+* Web Scraping: Tools for extracting data from websites.
+* Data Analysis: Codes using libraries like pandas, numpy, and matplotlib.
+* Algorithms and Data Structures: Implementation of classic algorithms and data structures.
+* Miscellaneous Scripts: Random codes and functionality tests.
