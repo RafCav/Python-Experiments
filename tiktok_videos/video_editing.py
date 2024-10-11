@@ -52,10 +52,13 @@ def main():
     audio_ending = AudioFileClip(AUDIO_ENDING_PATH).set_start(65)
     audio_clips_o.append(audio_ending)
 
+    # Concatenate audios
     final_audio = CompositeAudioClip(audio_clips_q + audio_clips_a + audio_clips_o)
 
+    # Insert final audio into the video
     final_video = video.set_audio(final_audio)
 
+    # Generate video
     final_video.write_videofile(FINAL_VIDEO_PATH, codec="libx264", audio_codec="aac")
 
 
