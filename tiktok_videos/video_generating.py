@@ -140,13 +140,15 @@ def main():
     duplicated_df = df_original.copy()
     df = pd.concat([df_original, duplicated_df], ignore_index=True).sort_values(by='page')
 
+    print(df)
+
     time.sleep(10)
 
     switch_page()
 
     # location_testing()
 
-    time.sleep(3)
+    time.sleep(10)
 
     for i in range(len(df)):
         if i == 0:  # Only first loop
