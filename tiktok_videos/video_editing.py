@@ -2,17 +2,18 @@ from moviepy.editor import VideoFileClip, AudioFileClip, CompositeAudioClip
 import os
 
 # Video
-VIDEO_NAME = '0001-tecnologia-facil'
+VIDEO_NAME = '0001-conhecimentos-gerais-facil'
 VIDEO_PATH = os.path.join(r'C:\Users\Rafae\Videos\TikTok\Incompletos', VIDEO_NAME + '.mp4')
 FINAL_VIDEO_PATH = os.path.join(r'C:\Users\Rafae\Videos\TikTok', VIDEO_NAME + '.mp4')
 
 # Audio
 AUDIO_PATH = r'C:\Users\Rafae\Videos\TikTok\Audios'
 AUDIO_INTRO_PATH = r'C:\Users\Rafae\Videos\TikTok\Audios\Zero\Teste o seu conhecimento.mp3'
-AUDIO_THEME_PATH = r'C:\Users\Rafae\Videos\TikTok\Audios\Zero\Tecnologia.mp3'
-AUDIO_LEVEL_PATH = r'C:\Users\Rafae\Videos\TikTok\Audios\Zero\Nível Médio.mp3'
+AUDIO_THEME_PATH = r'C:\Users\Rafae\Videos\TikTok\Audios\Zero\Conhecimentos Gerais.mp3'
+AUDIO_LEVEL_PATH = r'C:\Users\Rafae\Videos\TikTok\Audios\Zero\Nível Fácil.mp3'
 AUDIO_ANSWER_PATH = r'C:\Users\Rafae\Videos\TikTok\Audios\Zero\Correct Answer.mp3'
 AUDIO_ENDING_PATH = r'C:\Users\Rafae\Videos\TikTok\Audios\Zero\Curte o video.mp3'
+AUDIO_BG_PATH = r'C:\Users\Rafae\Videos\TikTok\Audios\Zero\bg-song-0001.mp3'
 
 
 def main():
@@ -24,7 +25,7 @@ def main():
         return '400'
 
     # Seconds when occurs the questions
-    questions_at = [5, 14, 28, 41, 55]
+    questions_at = [5.5, 14, 28, 41, 55]
     asnwers_at = [10, 23.5, 37, 50.5, 64]
 
     audio_clips_q = []
@@ -47,10 +48,12 @@ def main():
     audio_clips_o.append(audio_intro)
     audio_theme = AudioFileClip(AUDIO_THEME_PATH).set_start(2)
     audio_clips_o.append(audio_theme)
-    audio_level = AudioFileClip(AUDIO_LEVEL_PATH).set_start(3)
+    audio_level = AudioFileClip(AUDIO_LEVEL_PATH).set_start(4)
     audio_clips_o.append(audio_level)
     audio_ending = AudioFileClip(AUDIO_ENDING_PATH).set_start(65)
     audio_clips_o.append(audio_ending)
+    audio_bg = AudioFileClip(AUDIO_BG_PATH).subclip(0, 67).volumex(0.5)
+    audio_clips_o.append(audio_bg)
 
     # Concatenate audios
     final_audio = CompositeAudioClip(audio_clips_q + audio_clips_a + audio_clips_o)
