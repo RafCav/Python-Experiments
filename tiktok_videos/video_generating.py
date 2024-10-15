@@ -142,13 +142,13 @@ def main():
 
     print(df)
 
-    time.sleep(10)
+    time.sleep(5)
 
     switch_page()
 
     # location_testing()
 
-    time.sleep(10)
+    time.sleep(5)
 
     for i in range(len(df)):
         if i == 0:  # Only first loop
