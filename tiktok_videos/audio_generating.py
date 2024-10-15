@@ -4,7 +4,7 @@ from elevenlabs import save
 from elevenlabs.client import ElevenLabs
 import pandas as pd
 
-VIDEO_NAME = '0001-curiosidades-facil'
+VIDEO_NAME = '0001-conhecimentos-gerais-medio'
 VIDEO_PATH = r'C:\Users\Rafae\Videos\TikTok\Audios'
 
 load_dotenv()
