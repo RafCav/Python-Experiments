@@ -1,5 +1,3 @@
-import time
-
 from dotenv import load_dotenv
 import os
 from elevenlabs import save
@@ -13,14 +11,11 @@ VIDEOS_DIR = os.path.join(HOME_DIR, "Videos", "TikTok")
 AUDIO_PATH = os.path.join(HOME_DIR, "Videos", "TikTok", "Audios")
 
 load_dotenv()
-
 client = ElevenLabs(api_key=os.getenv("ELEVEN_API_KEY"))
-
 user = client.user.get()
 
 
 def generate_audio(txt_to_speech, q, video_name):
-
     # Here we get the audio's name
     audio_name = video_name + f'-q{q}.mp3'
 
@@ -30,12 +25,14 @@ def generate_audio(txt_to_speech, q, video_name):
         print(f" | {audio_name} already exists into {AUDIO_PATH}")
         return
 
+    # Generating
     audio = client.generate(
       text=txt_to_speech,
       voice="Will",
       model="eleven_multilingual_v2"
     )
 
+    # Saving
     save(audio=audio, filename=os.path.join(AUDIO_PATH, audio_name))
 
     print(f" | Audio generated successfully!")
@@ -85,12 +82,6 @@ def main():
             question = df_filtered['question'].iloc[i]
             print(f"Question {i + 1} of {len(df_filtered)}: {question}", end='')
             generate_audio(question, i + 1, file_name)
-
-
-        # restantes = user.subscription.character_limit - user.subscription.character_count
-        # print("Credit Quota Remaining:", restantes)
-
-
 
 
 main()
