@@ -53,6 +53,7 @@ def switch_page():
 
 
 def location_testing():
+    switch_page()
     for location in TESTING_ORDER:
         pyautogui.moveTo(location, duration=0.5)
         if location == ANS3:  # When reach text of third answer option, try effects
@@ -224,13 +225,13 @@ def download(video_name):
 def main():
     print(f"Largura: {screen_width}, Altura: {screen_height} | ({screen_size})")
 
+    # location_testing()  # Don't worry, this function will interrupt the code :)
+
     df, video_name = generate_dataframe()
 
     time.sleep(5)
 
     switch_page()
-
-    # location_testing()  # Don't worry, this function will interrupt the code :)
 
     time.sleep(5)
 
