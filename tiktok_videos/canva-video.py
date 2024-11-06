@@ -15,17 +15,15 @@ screen_width, screen_height = pyautogui.size()  # Screen Size
 screen_size = f'{screen_width}x{screen_height}'
 
 # LOCATIONS (18% zoom)
-PAGE1 = (255, 750) if screen_size == '1600x900' else (400, 900)
-# TITLE = (1010, 350)
-# SUBTITLE = (970, 380)
-QUESTION = (830, 415) if screen_size == '1600x900' else (1000, 480)
-ANS1 = (790, 515) if screen_size == '1600x900' else (940, 635)
-ANS1_BLOCK = (790, 525) if screen_size == '1600x900' else (940, 650)
-ANS2 = (790, 548) if screen_size == '1600x900' else (940, 685)
-ANS2_BLOCK = (790, 558) if screen_size == '1600x900' else (940, 700)
-ANS3 = (790, 580) if screen_size == '1600x900' else (940, 730)
-ANS3_BLOCK = (790, 590) if screen_size == '1600x900' else (940, 745)
-ANIMATE_BTM = (1140, 205) if screen_size == '1600x900' else (1350, 255)
+PAGE1 = (255, 750) if screen_size == '1600x900' else (325, 900)
+QUESTION = (830, 415) if screen_size == '1600x900' else (1000, 490)
+ANS1 = (790, 515) if screen_size == '1600x900' else (950, 628)
+ANS1_BLOCK = (790, 525) if screen_size == '1600x900' else (950, 638)
+ANS2 = (790, 548) if screen_size == '1600x900' else (950, 665)
+ANS2_BLOCK = (790, 558) if screen_size == '1600x900' else (950, 675)
+ANS3 = (790, 580) if screen_size == '1600x900' else (950, 707)
+ANS3_BLOCK = (790, 590) if screen_size == '1600x900' else (950, 717)
+ANIMATE_BTM = (1140, 205) if screen_size == '1600x900' else (1380, 255)
 BLANK_SPACE = (1200, 500) if screen_size == '1600x900' else (1600, 560)
 BLOCKS = {ANS1: ANS1_BLOCK, ANS2: ANS2_BLOCK, ANS3: ANS3_BLOCK}
 
