@@ -37,6 +37,7 @@ ANS_BLOCK_COLOR_ORANGE = (110, 420) if screen_size == '1600x900' else (130, 520)
 SHARE_BTM = (1520, 150) if screen_size == '1600x900' else (1820, 180)
 DOWNLOAD_BTM = (1240, 560) if screen_size == '1600x900' else (1465, 690)
 DOWNLOAD_BTM_2 = (1240, 625) if screen_size == '1600x900' else (1465, 780)
+SCROLL_PAGES_INIT = (0, 0) if screen_size == '1600x900' else (115, 968)
 
 # EXECUTIONS QUEUE
 TESTING_ORDER = [PAGE1, QUESTION, ANS1, ANS1_BLOCK, ANS2, ANS2_BLOCK, ANS3, ANS3_BLOCK]
@@ -168,7 +169,7 @@ def generate_dataframe():
     return df, video_name
 
 
-def download(video_name):
+def download():
     # Share Button
     pyautogui.moveTo(SHARE_BTM, duration=0.5)
     pyautogui.click()
@@ -182,8 +183,27 @@ def download(video_name):
     # Download... Again...
     pyautogui.moveTo(DOWNLOAD_BTM_2, duration=0.5)
     pyautogui.click()
+    time.sleep(1)
+
+    # Click to close download page
+    pyautogui.moveTo(QUESTION, duration=0.5)
+    pyautogui.click()
+    time.sleep(1)
+
+    # Scroll to the start
+    pyautogui.moveTo(SCROLL_PAGES_INIT, duration=0.5)
+    pyautogui.mouseDown()
+    time.sleep(0.5)
+    pyautogui.mouseUp()
     time.sleep(20)
 
+    # Click on the first block
+    pyautogui.moveTo(PAGE1, duration=0.5)
+    pyautogui.click()
+    time.sleep(1)
+
+
+def move_file(video_name):
     switch_page()
 
     # Above I'm going to rename the video and put in the correct folder
@@ -255,7 +275,9 @@ def main():
         pyautogui.click(BLANK_SPACE)
         time.sleep(2)
 
-    download(video_name)
+    download()
+
+    move_file(video_name)
 
     # TODO: Set video_name column with the name of the video
 
