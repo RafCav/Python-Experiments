@@ -1,68 +1,88 @@
+import time
+
 from moviepy.editor import VideoFileClip, AudioFileClip, CompositeAudioClip
 import os
+import sys
 
-# Video
-VIDEO_NAME = '0001-conhecimentos-gerais-medio'
-VIDEO_PATH = os.path.join(r'C:\Users\Rafae\Videos\TikTok\Incompletos', VIDEO_NAME + '.mp4')
-FINAL_VIDEO_PATH = os.path.join(r'C:\Users\Rafae\Videos\TikTok', VIDEO_NAME + '.mp4')
 
-# Audio
-AUDIO_PATH = r'C:\Users\Rafae\Videos\TikTok\Audios'
-AUDIO_INTRO_PATH = r'C:\Users\Rafae\Videos\TikTok\Audios\Zero\Teste o seu conhecimento.mp3'
-AUDIO_THEME_PATH = r'C:\Users\Rafae\Videos\TikTok\Audios\Zero\Conhecimentos Gerais.mp3'
-AUDIO_LEVEL_PATH = r'C:\Users\Rafae\Videos\TikTok\Audios\Zero\Nível Médio.mp3'
+HOME_DIR = os.path.expanduser("~")
+VIDEOS_INCOMPLETOS_DIR = os.path.join(HOME_DIR, "Videos", "TikTok", "Incompletos")
+VIDEOS_DIR = os.path.join(HOME_DIR, "Videos", "TikTok")
+AUDIO_PATH = os.path.join(HOME_DIR, "Videos", "TikTok", "Audios")
 AUDIO_ANSWER_PATH = r'C:\Users\Rafae\Videos\TikTok\Audios\Zero\Correct Answer.mp3'
 AUDIO_ENDING_PATH = r'C:\Users\Rafae\Videos\TikTok\Audios\Zero\Curte o video.mp3'
-AUDIO_BG_PATH = r'C:\Users\Rafae\Videos\TikTok\Audios\Zero\bg-song-0001.mp3'
 
 
 def main():
 
-    try:
-        video = VideoFileClip(VIDEO_PATH)
-    except Exception as err:
-        print(f"Couldn't load the video: {err}")
-        return '400'
+    # List all incompleted videos
+    files = os.listdir(VIDEOS_INCOMPLETOS_DIR)
 
-    # Seconds when occurs the questions
-    questions_at = [5.5, 14, 28, 41, 55]
-    asnwers_at = [10, 23.5, 37, 50.5, 64]
+    # If there is no video, exit. Otherwise, keep going
+    if not files:
+        print(f"0 videos found in the path {VIDEOS_INCOMPLETOS_DIR}")
+        sys.exit()
+    else:
+        print(f"{len(files)} video(s) found in the path {VIDEOS_INCOMPLETOS_DIR}")
 
-    audio_clips_q = []
-    audio_clips_a = []
-    audio_clips_o = []
+    for file in files:
+        print(file)
 
-    # Load Questions Audios
-    for i, sec in enumerate(questions_at, start=1):
-        audio_name = f"{VIDEO_NAME}-q{i}.mp3"  # Nome do arquivo de áudio
-        audio = AudioFileClip(os.path.join(AUDIO_PATH, audio_name)).set_start(sec).volumex(2.0)
-        audio_clips_q.append(audio)
+        file_path = os.path.join(VIDEOS_INCOMPLETOS_DIR, file)
 
-    # Load Answer Audios
-    for sec in asnwers_at:
-        audio = AudioFileClip(AUDIO_ANSWER_PATH).set_start(sec).volumex(0.5)
-        audio_clips_a.append(audio)
+        # Split file and extension
+        file_name, file_ext = os.path.splitext(file)
 
-    # Load Other Audios
-    audio_intro = AudioFileClip(AUDIO_INTRO_PATH).set_start(0)
-    audio_clips_o.append(audio_intro)
-    audio_theme = AudioFileClip(AUDIO_THEME_PATH).set_start(2)
-    audio_clips_o.append(audio_theme)
-    audio_level = AudioFileClip(AUDIO_LEVEL_PATH).set_start(4)
-    audio_clips_o.append(audio_level)
-    audio_ending = AudioFileClip(AUDIO_ENDING_PATH).set_start(65)
-    audio_clips_o.append(audio_ending)
-    audio_bg = AudioFileClip(AUDIO_BG_PATH).subclip(0, 67).volumex(0.5)
-    audio_clips_o.append(audio_bg)
+        try:
+            video = VideoFileClip(file_path)
+        except Exception as err:
+            print(f"Couldn't load the video: {err}")
+            return '400'
 
-    # Concatenate audios
-    final_audio = CompositeAudioClip(audio_clips_q + audio_clips_a + audio_clips_o)
+        # Seconds when occurs the questions
+        questions_at = [0.5, 10.5, 20.5, 30.5, 40.5, 50.5]
+        asnwers_at = [7, 17, 27, 37, 47, 57]
 
-    # Insert final audio into the video
-    final_video = video.set_audio(final_audio)
+        audio_clips_q = []
+        audio_clips_a = []
+        audio_clips_o = []
 
-    # Generate video
-    final_video.write_videofile(FINAL_VIDEO_PATH, codec="libx264", audio_codec="aac")
+        # Load Questions Audios
+        for i, sec in enumerate(questions_at, start=1):
+            audio_name = f"{file_name}-q{i}.mp3"  # Nome do arquivo de áudio
+            audio = AudioFileClip(os.path.join(AUDIO_PATH, audio_name)).set_start(sec).volumex(2.0)
+            audio_clips_q.append(audio)
+
+        # Load Answer Audios
+        for sec in asnwers_at:
+            audio = AudioFileClip(AUDIO_ANSWER_PATH).set_start(sec).volumex(0.5)
+            audio_clips_a.append(audio)
+
+        # Load Other Audios
+        # audio_intro = AudioFileClip(AUDIO_INTRO_PATH).set_start(0)
+        # audio_clips_o.append(audio_intro)
+        # audio_theme = AudioFileClip(AUDIO_THEME_PATH).set_start(2)
+        # audio_clips_o.append(audio_theme)
+        # audio_level = AudioFileClip(AUDIO_LEVEL_PATH).set_start(4)
+        # audio_clips_o.append(audio_level)
+        audio_ending = AudioFileClip(AUDIO_ENDING_PATH).set_start(58)
+        audio_clips_o.append(audio_ending)
+        # audio_bg = AudioFileClip(AUDIO_BG_PATH).subclip(0, 67).volumex(0.5)
+        # audio_clips_o.append(audio_bg)
+
+        # Concatenate audios
+        final_audio = CompositeAudioClip(audio_clips_q + audio_clips_a + audio_clips_o)
+
+        # Insert final audio into the video
+        final_video = video.set_audio(final_audio)
+
+        final_video_path = os.path.join(VIDEOS_DIR, file)
+
+        # Generate video
+        final_video.write_videofile(final_video_path, codec="libx264", audio_codec="aac")
+
+        # TODO: Se o video já estiver editado, exluir... ou
+        # TODO: Editar apenas videos que não estejam em videos finalizados
 
 
 main()
