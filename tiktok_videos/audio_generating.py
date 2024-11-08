@@ -69,7 +69,7 @@ def main():
         # Verify the quota
         df_temp = df_filtered.copy()  # Had to generate another df
         quota_nedded = df_temp['question_len'].astype(int).sum()
-        quota_total = user.subscription.character_limit
+        quota_total = user.subscription.character_count
         print(f"Credit Quota Need: {quota_nedded} | You Have: {quota_total}", end='')
         if quota_total >= quota_nedded:
             print(" | You have enough :)")
@@ -82,6 +82,9 @@ def main():
             question = df_filtered['question'].iloc[i]
             print(f"Question {i + 1} of {len(df_filtered)}: {question}", end='')
             generate_audio(question, i + 1, file_name)
+
+            # restantes = user.subscription.character_limit - user.subscription.character_count
+            # print("Credit Quota Remaining:", restantes)
 
 
 main()
