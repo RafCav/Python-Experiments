@@ -15,6 +15,13 @@ client = ElevenLabs(api_key=os.getenv("ELEVEN_API_KEY"))
 user = client.user.get()
 
 
+def my_quota():
+    limit = user.subscription.character_limit
+    used = user.subscription.character_count
+    remaining = limit - used
+    print(f"Quota Limit: {limit} \nQuota Used: {used} \nQuota Remaining: {remaining}")
+
+
 def generate_audio(txt_to_speech, q, video_name):
     # Here we get the audio's name
     audio_name = video_name + f'-q{q}.mp3'
@@ -69,7 +76,7 @@ def main():
         # Verify the quota
         df_temp = df_filtered.copy()  # Had to generate another df
         quota_nedded = df_temp['question_len'].astype(int).sum()
-        quota_total = user.subscription.character_count
+        quota_total = user.subscription.character_limit - user.subscription.character_count
         print(f"Credit Quota Need: {quota_nedded} | You Have: {quota_total}", end='')
         if quota_total >= quota_nedded:
             print(" | You have enough :)")
