@@ -37,7 +37,7 @@ ANS_BLOCK_COLOR_ORANGE = (110, 420) if screen_size == '1600x900' else (130, 520)
 SHARE_BTM = (1520, 150) if screen_size == '1600x900' else (1820, 180)
 DOWNLOAD_BTM = (1240, 560) if screen_size == '1600x900' else (1465, 690)
 DOWNLOAD_BTM_2 = (1240, 625) if screen_size == '1600x900' else (1465, 780)
-SCROLL_PAGES_INIT = (0, 0) if screen_size == '1600x900' else (115, 815)
+SCROLL_PAGES_INIT = (115, 815) if screen_size == '1600x900' else (115, 815)
 
 # EXECUTIONS QUEUE
 TESTING_ORDER = [PAGE1, QUESTION, ANS1, ANS1_BLOCK, ANS2, ANS2_BLOCK, ANS3, ANS3_BLOCK]
@@ -275,7 +275,10 @@ def main():
         pyautogui.click(BLANK_SPACE)
         time.sleep(2)
 
-    download()
+    try:
+        download()
+    except Exception as err:
+        print(err)
 
     move_file(video_name)
 
