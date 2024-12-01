@@ -17,12 +17,12 @@ screen_size = f'{screen_width}x{screen_height}'
 # LOCATIONS (18% zoom)
 PAGE1 = (255, 750) if screen_size == '1600x900' else (325, 900)
 QUESTION = (830, 415) if screen_size == '1600x900' else (1000, 490)
-ANS1 = (790, 515) if screen_size == '1600x900' else (950, 628)
-ANS1_BLOCK = (790, 525) if screen_size == '1600x900' else (950, 638)
-ANS2 = (790, 548) if screen_size == '1600x900' else (950, 665)
-ANS2_BLOCK = (790, 558) if screen_size == '1600x900' else (950, 675)
-ANS3 = (790, 580) if screen_size == '1600x900' else (950, 707)
-ANS3_BLOCK = (790, 590) if screen_size == '1600x900' else (950, 717)
+ANS1 = (790, 515) if screen_size == '1600x900' else (930, 640)
+ANS1_BLOCK = (790, 525) if screen_size == '1600x900' else (930, 655)
+ANS2 = (790, 548) if screen_size == '1600x900' else (930, 690)
+ANS2_BLOCK = (790, 558) if screen_size == '1600x900' else (930, 705)
+ANS3 = (790, 580) if screen_size == '1600x900' else (930, 735)
+ANS3_BLOCK = (790, 590) if screen_size == '1600x900' else (930, 755)
 ANIMATE_BTM = (1140, 205) if screen_size == '1600x900' else (1380, 255)
 BLANK_SPACE = (1200, 500) if screen_size == '1600x900' else (1600, 560)
 BLOCKS = {ANS1: ANS1_BLOCK, ANS2: ANS2_BLOCK, ANS3: ANS3_BLOCK}
@@ -30,14 +30,14 @@ BLOCKS = {ANS1: ANS1_BLOCK, ANS2: ANS2_BLOCK, ANS3: ANS3_BLOCK}
 A_MENU_SCROLL_BAR = (425, 830) if screen_size == '1600x900' else (530, 990)
 A_PULSE_BTM = (350, 630) if screen_size == '1600x900' else (430, 740)
 A_REMOVE_BTM = (350, 820) if screen_size == '1600x900' else (430, 970)
-ANS_BLOCK_COLOR = (600, 210) if screen_size == '1600x900' else (770, 255)
+ANS_BLOCK_COLOR = (600, 210) if screen_size == '1600x900' else (760, 255)
 ANS_BLOCK_COLOR_YELLOW = (160, 420) if screen_size == '1600x900' else (200, 520)
 ANS_BLOCK_COLOR_ORANGE = (110, 420) if screen_size == '1600x900' else (130, 520)
 
 SHARE_BTM = (1520, 150) if screen_size == '1600x900' else (1820, 180)
 DOWNLOAD_BTM = (1240, 560) if screen_size == '1600x900' else (1465, 690)
 DOWNLOAD_BTM_2 = (1240, 625) if screen_size == '1600x900' else (1465, 780)
-SCROLL_PAGES_INIT = (115, 815) if screen_size == '1600x900' else (115, 815)
+SCROLL_PAGES_INIT = (115, 815) if screen_size == '1600x900' else (115, 975)
 
 # EXECUTIONS QUEUE
 TESTING_ORDER = [PAGE1, QUESTION, ANS1, ANS1_BLOCK, ANS2, ANS2_BLOCK, ANS3, ANS3_BLOCK]
