@@ -12,10 +12,10 @@ AUDIO_PATH = os.path.join(HOME_DIR, "Videos", "TikTok", "Audios")
 
 load_dotenv()
 client = ElevenLabs(api_key=os.getenv("ELEVEN_API_KEY"))
-user = client.user.get()
 
 
 def my_quota():
+    user = client.user.get()
     limit = user.subscription.character_limit
     used = user.subscription.character_count
     remaining = limit - used
@@ -64,6 +64,7 @@ def main():
 
     # Read each file inside directory
     for file in files:
+        user = client.user.get()
         print(f'\n### {file}')
 
         # Split file and extension
