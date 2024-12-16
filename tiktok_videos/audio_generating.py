@@ -1,3 +1,5 @@
+import time
+
 from dotenv import load_dotenv
 import os
 from elevenlabs import save
@@ -90,6 +92,7 @@ def main():
             question = df_filtered['question'].iloc[i]
             print(f"Question {i + 1} of {len(df_filtered)}: {question}", end='')
             generate_audio(question, i + 1, file_name)
+            time.sleep(5)
 
             # restantes = user.subscription.character_limit - user.subscription.character_count
             # print("Credit Quota Remaining:", restantes)
