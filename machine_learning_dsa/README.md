@@ -197,3 +197,44 @@ uma classe. Usado para classificação binária (ex.: previsão de doenças).
 
 **Hidden Markov Models (HMM):** Modelam dados sequenciais, como reconhecimento 
 de fala ou análise de séries temporais.
+
+### Search-Based Learning
+
+É uma abordagem de aprendizado que vê o processo de aprendizado 
+como um problema de exploração de um espaço de hipóteses ou soluções. 
+Nesse método, a ideia principal é buscar a hipótese 
+(modelo ou regra) que melhor se ajusta aos dados de treinamento, 
+utilizando técnicas de busca e heurísticas para encontrar essa 
+solução.
+
+> Para prever se uma pessoa vai ou não comprar um produto, podemos
+> nos basear na sua idade, renda, tempo no site e etc.
+ 
+Um método famoso do Search-Based Learning são as Decision Trees,
+que usam estratégias de "dividir para conquistar" para resolver
+determinado problema. Um problema complexo é dividido em problemas
+mais simples ao quais recursivamente é aplicada a mesma estratégia.
+
+![img_14.png](img_14.png)
+
+**Árvore de Decisão:** Resolve problemas de classificação.
+
+**Árvore de Regressão:** Resolve problemas de regressão.
+
+**Algoritmos:** ID3 (1986); C4.5 (1993) 
+
+### Optimizario-Based Learning
+
+São técnicas que tratam o processo de aprendizado como um 
+problema de otimização, onde o objetivo é encontrar os melhores 
+parâmetros ou a melhor solução para um modelo, minimizando ou 
+maximizando uma função de erro (ou objetivo).
+
+Os métodos de aprendizado mais comuns nessa categoria são as 
+**Redes Neurais Artificiais** e os **SVM (Support Vector Machines)**.
+
+**Ar
+
+
+
+
