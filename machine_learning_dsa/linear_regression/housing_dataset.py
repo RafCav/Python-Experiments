@@ -36,7 +36,10 @@ import matplotlib.pyplot as plt
 from scipy.stats.stats import pearsonr
 from scipy.stats import zscore
 import statsmodels.api as sm
+from sklearn import linear_model
+from sklearn.datasets import make_regression
 import matplotlib as mpl
+import time
 
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
@@ -180,6 +183,75 @@ def linear_regression_statsmodels(df):
     plt.show()
 
 
+def linear_regression_scikit_learn(df):
+    # Cria o objeto
+    modelo_v2 = linear_model.LinearRegression(fit_intercept=True)
+
+    """
+    No Scikit-Learn (e ML no geral), X deve ser uma matriz (array 2D) com formato (n_amostras, n_features).
+    Isso porque os modelos precisam distinguir entre observações (linhas) e características (colunas).
+    Se X for um vetor 1D, usamos reshape(-1, 1) para transformá-lo em uma matriz 2D
+    """
+
+    # Dados de entrada e saída
+    num_observ = len(df)
+    x = df['RM'].values.reshape((num_observ, 1))  # X deve sempre ser uma matriz e nunca um vetor
+    y = df['target'].values  # y pode ser um vetor
+
+    print(f"\nTipo de dado (x): {type(x)} | Dimensões: {np.ndim(x)}")
+    print(f"Tipo de dado (y): {type(y)} | Dimensões: {np.ndim(y)}")
+
+    """
+    df['column'].values → Converte a coluna em um array NumPy
+    .reshape((num_observ, 1)) → Transforma o array 1D em uma matriz 2D com num_observ linhas e 1 única coluna
+    Como y representa o alvo (variável dependente), ele pode ser um vetor 1D
+    """
+
+    # Treinamento
+    modelo_v2.fit(x, y)
+
+    print(f"\nCoeficiente: {modelo_v2.coef_}\nIntercepto: {modelo_v2.intercept_}")
+    # print(modelo_v2.predict(x))  # Dados que foram previstos pelo modelo durante o treinamento
+
+    # Mostrando previsão para um x = 5 (novo valor)
+    new_rm = 5
+    xp = np.array(new_rm).reshape(-1, 1)
+    print(f"\nNovo Dado X = {new_rm} | Y Previsto = {modelo_v2.predict(xp)[0]:.1f}")
+
+    """
+    O -1 do reshape é como um coringa: ele indica que o NumPy deve calcular automaticamente o número de linhas com base 
+    nos dados.
+    """
+
+
+def compara_pacotes():
+    # Gera um conjunto de dados sintético para regressão
+    hx, hy = make_regression(
+        n_samples=10000000,  # Número de amostras (10 milhões de exemplos)
+        n_features=1,  # Cada amostra tem 1 única feature (variável independente)
+        n_targets=1,  # Apenas 1 variável alvo (output/dependente)
+        random_state=101  # Define a seed para reprodutibilidade dos resultados (opcional)
+    )
+    """
+    hx será uma matriz (10 milhões de linhas, 1 coluna) representando as features
+    hy será um vetor (10 milhões de valores) representando os valores-alvo da regressão
+    """
+
+    print("Comparação StatsModels x ScikitLearn")
+
+    st = time.time()
+    sk_linear_regression = linear_model.LinearRegression(fit_intercept=True)
+    sk_linear_regression.fit(hx, hy)
+    et = time.time()
+    print(f"SciKit: {et - st:.5f} segundos")
+
+    st = time.time()
+    sm_linear_regression = sm.OLS(hy, sm.add_constant(hx))
+    sm_linear_regression.fit()
+    et = time.time()
+    print(f"StatsModels: {et - st:.5f} segundos")
+
+
 def main():
     # ################################### DATASET IMPORT
     data = pd.read_csv('HousingData.csv', sep=',')
@@ -193,7 +265,11 @@ def main():
 
     # correlation(data)
 
-    linear_regression_statsmodels(data)
+    # linear_regression_statsmodels(data)
+
+    # linear_regression_scikit_learn(data)
+
+    compara_pacotes()
 
 
 main()
